@@ -8,8 +8,6 @@ pre_start_clava = ReplyKeyboardMarkup(
     keyboard=[[pre_start_button]],
     resize_keyboard=True)
 
-
-
 send_clava = ReplyKeyboardMarkup(
     keyboard=[[send_batton]],
     resize_keyboard=True)

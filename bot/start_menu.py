@@ -12,4 +12,3 @@ async def set_main_menu(bot):
                    description='Отправить сообщение через бота')
         ]
     await bot.set_my_commands(main_menu_commands)
-

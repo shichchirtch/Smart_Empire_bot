@@ -66,7 +66,7 @@ async def send_me(message: Message, state: FSMContext):
     await incremet_send_msg(user_id)
     await state.set_state(FSM_ST.wait)
     await message.answer("Ваше сообщение успешно отпралено ! Спасибо !")
-    await asyncio.sleep(20)
+    await asyncio.sleep(1800)
     await state.set_state(FSM_ST.after_start)
 
 

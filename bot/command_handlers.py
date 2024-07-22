@@ -5,7 +5,7 @@ from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram.filters import CommandStart, Command, StateFilter
 from filters import PRE_START
 from key_boards import pre_start_clava, send_clava
-from lexicon import start_message
+from lexicon import start_message, help_msg
 from aiogram.fsm.context import FSMContext
 from FSM_states import FSM_ST
 from postgres_functions import *
@@ -47,6 +47,14 @@ async def set_send(message: Message, state: FSMContext):
                          reply_markup=ReplyKeyboardRemove())
     await state.set_state(FSM_ST.accept)
 
+@ch_router.message(Command(commands='help'), ~StateFilter(FSM_ST.wait))
+async def set_send(message: Message, state: FSMContext):
+    att = await message.answer(help_msg)
+    await state.set_state(FSM_ST.accept)
+    await asyncio.sleep(5)
+    await message.delete()
+    await att.delete()
+
 
 @ch_router.message(~StateFilter(FSM_ST.wait), StateFilter(FSM_ST.accept))
 async def send_me(message: Message, state: FSMContext):
@@ -77,5 +85,4 @@ async def buffer(message: Message):
     await asyncio.sleep(5)
     await message.delete()
     await att.delete()
-
 
